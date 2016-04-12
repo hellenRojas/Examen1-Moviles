@@ -32,26 +32,21 @@ public class EditElimActivity extends AppCompatActivity {
         etColor.setText(color);
         btnAgregarEE = (Button)findViewById(R.id.btnAgregarFlorEE);
         btnEliminarEE = (Button)findViewById(R.id.btnEliminarEE);
-
         btnAgregarEE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (etNombre.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Complete the Spaces", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Complete los espacios", Toast.LENGTH_LONG).show();
                 } else {
 
-
                     Flor flor = new Flor();
-
                     flor.setName(etNombre.getText().toString());
                     flor.setNameC(etNombreC.getText().toString());
                     flor.setColor(etColor.getText().toString());
-
-
                     repository.Update(flor);
 
-                    Toast.makeText(getApplicationContext(), "Editado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Editado correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -61,23 +56,19 @@ public class EditElimActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (etNombre.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Complete the Spaces", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Complete los espacios", Toast.LENGTH_LONG).show();
                 } else {
 
-
                     Flor flor = new Flor();
-
                     flor.setName(etNombre.getText().toString());
                     flor.setNameC(etNombreC.getText().toString());
                     flor.setColor(etColor.getText().toString());
                     etNombre.setText("");
                     etNombreC.setText("");
                     etColor.setText("");
-
-
                     repository.Delete(flor);
 
-                    Toast.makeText(getApplicationContext(), "Eliminado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Eliminado correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
 

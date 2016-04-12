@@ -79,35 +79,28 @@ public class AgregarFragment extends Fragment {
         addA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Se obtienen los componentes de la interfaz
                 EditText etname = (EditText)view.findViewById(R.id.etNombre);
                 EditText etnameC = (EditText)view.findViewById(R.id.etNombreC);
                 EditText etcolor= (EditText)view.findViewById(R.id.etColor);
-
+                // se verifica que el espacio nombre no este vacio
                 if(etname.getText().toString().equals("")){
-                    Toast.makeText(getContext().getApplicationContext(), "Complete the Spaces", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext().getApplicationContext(), "Complete todos los espacios", Toast.LENGTH_LONG).show();
                 }
                 else {
                     FlorRepository repository = new FlorRepository(getContext().getApplicationContext());
-
+                    // Se crea un nuevo objeto Flor
                     Flor flor = new Flor();
-
                     flor.setName(etname.getText().toString());
                     flor.setNameC(etnameC.getText().toString());
                     flor.setColor(etcolor.getText().toString());
 
-
+                    // Luego se agrega a la base de datos y se le notifica al usuario
                     repository.Save(flor);
                     etname.setText("");
                     etnameC.setText("");
                     etcolor.setText("");
-                    Toast.makeText(getContext(),"Registrado",Toast.LENGTH_SHORT).show();
-                    /*
-                    SQLiteDatabase db = connexion.getWritableDatabase();
-                    Cursor cursor = db.query("flor", new String[]{"id", "name", "nameC", "color"}, null, null, null, null, "id desc", null);
-                    cursor.moveToFirst();
-                    String nombre = cursor.getString(1);
-                    Toast.makeText(getContext(),nombre,Toast.LENGTH_SHORT).show();
-                    */
+                    Toast.makeText(getContext(),"Registrado correctamente",Toast.LENGTH_SHORT).show();
 
                 }
             }

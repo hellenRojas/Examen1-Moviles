@@ -3,9 +3,7 @@ package cr.ac.itcr.examen1moviles;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,13 +22,10 @@ public class DashboardActivity extends AppCompatActivity
         AboutFragment.OnFragmentInteractionListener,
         AgregarFragment.OnFragmentInteractionListener,
         Editar_ElimFragment.OnFragmentInteractionListener,
-        TestFragment.OnFragmentInteractionListener
+        InicioFragment.OnFragmentInteractionListener,
+        GaleriaFragment.OnFragmentInteractionListener
   {
 
-    public void aceptar(){
-        Toast t = Toast.makeText(this,"Bienvenido a probar el programa.",Toast.LENGTH_SHORT);
-        t.show();
-    }
 
     public void cancelar(){
         finish();
@@ -43,32 +38,7 @@ public class DashboardActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
-        dialogo1.setTitle("Importante");
-        dialogo1.setMessage("¿ Acepta la ejecución de este programa en modo prueba ?");
-        dialogo1.setCancelable(false);
-
-
-
-        LayoutInflater inflater = getLayoutInflater();
-        View dialoglayout = inflater.inflate(R.layout.fragment_about, null);
-        dialogo1.setView(dialoglayout);
-
-
-
-        dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo1, int id) {
-                aceptar();
-            }
-        });
-        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo1, int id) {
-                cancelar();
-            }
-        });
-        dialogo1.show();
-
+        //Se instancia el navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -77,6 +47,10 @@ public class DashboardActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Se carga el fragmento de inicio al Dashboard
+        Fragment fragment = new InicioFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard, fragment).commit();
     }
 
     @Override
@@ -114,19 +88,21 @@ public class DashboardActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        //Aquí se programan las acciones cada una de las opciones del menu
         int id = item.getItemId();
-
+        //Agergar flores
         if (id == R.id.nav_agregar) {
             Fragment fragment = new AgregarFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard, fragment).commit();
-
+            //Editar o eliminar tipos de flores
         } else if (id == R.id.nav_editar) {
             Fragment fragment = new Editar_ElimFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard, fragment).commit();
+            //Galería de infromación
         }  else if (id == R.id.nav_galeria) {
-            Fragment fragment = new TestFragment();
+            Fragment fragment = new GaleriaFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard, fragment).commit();
+            // Información sobre la app
         } else if (id == R.id.nav_about) {
             Fragment fragment = new AboutFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard, fragment).commit();

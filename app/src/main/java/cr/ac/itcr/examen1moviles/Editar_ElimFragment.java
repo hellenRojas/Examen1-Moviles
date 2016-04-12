@@ -14,28 +14,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import cr.ac.itcr.examen1moviles.access_data.FlorRepository;
 import cr.ac.itcr.examen1moviles.access_data.IRepository;
-import cr.ac.itcr.examen1moviles.adapter.AdapterFlor;
-import cr.ac.itcr.examen1moviles.entity.Flor;
-
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TestFragment.OnFragmentInteractionListener} interface
+ * {@link GaleriaFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TestFragment#newInstance} factory method to
+ * Use the {@link GaleriaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Editar_ElimFragment extends Fragment {
 
-    AdapterFlor adapter;
     ListView lv1;
     TextView tvFlor;
 
@@ -60,11 +55,11 @@ public class Editar_ElimFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TestFragment.
+     * @return A new instance of fragment .
      */
     // TODO: Rename and change types and number of parameters
-    public static TestFragment newInstance(String param1, String param2) {
-        TestFragment fragment = new TestFragment();
+    public static GaleriaFragment newInstance(String param1, String param2) {
+        GaleriaFragment fragment = new GaleriaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -95,11 +90,7 @@ public class Editar_ElimFragment extends Fragment {
 
         ArrayList<String> test = repository.GetAll();
         ArrayList<String> listaFlores = new ArrayList<>();
-/*
-        for( int i = 0 ; i < test.size() ; i++ ){
-           listaFlores.add(test.get(i).getName());
-        }
-*/
+
         lv1= (ListView)view.findViewById(R.id.listaFlores);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, test);
 
@@ -121,13 +112,9 @@ public class Editar_ElimFragment extends Fragment {
                         //aceptar();
                     }
                 });
-
-
                 Intent intent = new Intent(getContext(), EditElimActivity.class);
                 intent.putExtra("nombre",nombre);
                 startActivity(intent);
-
-
 
             }
         });
@@ -135,18 +122,7 @@ public class Editar_ElimFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
 
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_test, container, false);
-        /*
-        View view = inflater.inflate(R.layout.fragment_test, container, false);
-        final ListView lista = (ListView) view.findViewById(R.id.ContenlistView);
-        adapter = new AdapterFlor(getActivity().getApplicationContext(),LoadData());
-        lista.setAdapter(adapter);
-        return view;
-        */
-
     }
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

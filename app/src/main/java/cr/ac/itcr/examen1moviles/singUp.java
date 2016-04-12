@@ -44,20 +44,20 @@ public class singUp extends Activity
 // check if any of the fields are vaccant
                 if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
                 {
-                    Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Complete todos los campos", Toast.LENGTH_LONG).show();
                     return;
                 }
 // check if both password matches
                 if(!password.equals(confirmPassword))
                 {
-                    Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Las constraseñas no coinciden", Toast.LENGTH_LONG).show();
                     return;
                 }
                 else
                 {
 // Save the Data in Database
                     loginDataBaseAdapter.insertEntry(userName, password);
-                    Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Cuenta creada correctamente", Toast.LENGTH_LONG).show();
                     Intent intentSignIn=new Intent(getApplicationContext(),login.class);
                     startActivity(intentSignIn);
                 }
