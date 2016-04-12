@@ -25,6 +25,32 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:gravity="top|center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ICTApp"
+                android:id="@+id/textView8"
+                android:textSize="40dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold|italic"
+                android:textCursorDrawable="@null"
+                android:textColorHighlight="#ffffff"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center|fill_vertical"
+                android:textIsSelectable="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_marginTop="50dp">
 
             <EditText

@@ -7,6 +7,9 @@ import cr.ac.itcr.examen1moviles.entity.Flor;
 /**
  * Created by Hellen Rojas Rojas on 30/03/2016.
  */
+/*
+   Interface de IRepository
+ */
 public interface IRepository<Object> {
     public boolean Save(Object object);
     public boolean Update(Object object);

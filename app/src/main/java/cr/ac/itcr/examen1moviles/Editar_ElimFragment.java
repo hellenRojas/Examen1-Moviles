@@ -87,31 +87,20 @@ public class Editar_ElimFragment extends Fragment {
 
 
         final IRepository repository = new FlorRepository(getContext().getApplicationContext());
-
+        //Se obtienen todos los elementos de base de datos con getAll
         ArrayList<String> test = repository.GetAll();
-        ArrayList<String> listaFlores = new ArrayList<>();
-
+        // Se añade al list view
         lv1= (ListView)view.findViewById(R.id.listaFlores);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, test);
-
+        //Se le da funcionalidad al click de los items del listview
         lv1.setAdapter(adapter);
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Se obtiene el nombre que es el identificador
                 String nombre = (lv1.getItemAtPosition(position).toString());
-                String nombreC = repository.GetBy(nombre).getNamec();
-                String color = repository.GetBy(nombre).getColor();
-                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getContext());
-                dialogo1.setTitle("Información");
-
-                dialogo1.setMessage("Nombre: " + nombre + "\n\n Nombre científico: " + nombreC
-                        + "\n\n Color: " + color);
-                dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        //aceptar();
-                    }
-                });
+                // Luego se levanta otro activity para editar o eliminar elementos y se le manda el nombre para que
+                //indentifique cual elemento es
                 Intent intent = new Intent(getContext(), EditElimActivity.class);
                 intent.putExtra("nombre",nombre);
                 startActivity(intent);

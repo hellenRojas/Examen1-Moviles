@@ -18,12 +18,15 @@ public class EditElimActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_elim);
+        //Se obtiene el nombre enviado por el EditarElimFragment
         String nombre = getIntent().getExtras().getString("nombre");
-        Toast.makeText(this, nombre, Toast.LENGTH_LONG).show();
+        // Se hace una instancia de Irepository para acceder a las funciones de base de datos
         final IRepository repository = new FlorRepository(this);
+        //Se obtiene el objeto Flor con la funcion GetBy mandando el nombre como parametro
         Flor f = repository.GetBy(nombre);
         String nombreC = f.getNamec();
         String color = f.getColor();
+        // Se setean los campos con los atributos del objeto
         etNombre = (EditText) findViewById(R.id.etNombreEE);
         etNombreC = (EditText) findViewById(R.id.etNombreCEE);
         etColor = (EditText) findViewById(R.id.etColorEE);
@@ -32,6 +35,7 @@ public class EditElimActivity extends AppCompatActivity {
         etColor.setText(color);
         btnAgregarEE = (Button)findViewById(R.id.btnAgregarFlorEE);
         btnEliminarEE = (Button)findViewById(R.id.btnEliminarEE);
+        // Se le da funcionalidad al boton de Editar
         btnAgregarEE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,11 +43,12 @@ public class EditElimActivity extends AppCompatActivity {
                 if (etNombre.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Complete los espacios", Toast.LENGTH_LONG).show();
                 } else {
-
+                    // una vez que el usuario cambie algo y de click en el boton  se crea un objeto Flor
                     Flor flor = new Flor();
                     flor.setName(etNombre.getText().toString());
                     flor.setNameC(etNombreC.getText().toString());
                     flor.setColor(etColor.getText().toString());
+                    //Y luego se modifican los campos por medio de la función Update
                     repository.Update(flor);
 
                     Toast.makeText(getApplicationContext(), "Editado correctamente", Toast.LENGTH_SHORT).show();
@@ -51,6 +56,7 @@ public class EditElimActivity extends AppCompatActivity {
             }
 
         });
+        //Se le da funcionalidada al boton eliminar
         btnEliminarEE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,14 +64,16 @@ public class EditElimActivity extends AppCompatActivity {
                 if (etNombre.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Complete los espacios", Toast.LENGTH_LONG).show();
                 } else {
-
+                    // Se crea un objeto con los atributos  que estan en los campos
                     Flor flor = new Flor();
                     flor.setName(etNombre.getText().toString());
                     flor.setNameC(etNombreC.getText().toString());
                     flor.setColor(etColor.getText().toString());
+                    //Se limbian los editText
                     etNombre.setText("");
                     etNombreC.setText("");
                     etColor.setText("");
+                    // Se elimina de base de datos
                     repository.Delete(flor);
 
                     Toast.makeText(getApplicationContext(), "Eliminado correctamente", Toast.LENGTH_SHORT).show();

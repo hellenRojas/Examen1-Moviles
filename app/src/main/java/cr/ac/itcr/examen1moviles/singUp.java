@@ -22,11 +22,11 @@ public class singUp extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
 
-// get Instance of Database Adapter
+        // Se crea la instancia de la base de datos SQLite
         loginDataBaseAdapter=new LoginDataBaseAdapter(this);
         loginDataBaseAdapter=loginDataBaseAdapter.open();
 
-// Get Refferences of Views
+        // Se obtienen las referencias de los views
         editTextUserName=(EditText)findViewById(R.id.txtUsuarioNuevo);
         editTextPassword=(EditText)findViewById(R.id.txtPassNueva);
         editTextConfirmPassword=(EditText)findViewById(R.id.txtConfirmPass);
@@ -35,19 +35,19 @@ public class singUp extends Activity
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-// TODO Auto-generated method stub
+
 
                 String userName=editTextUserName.getText().toString();
                 String password=editTextPassword.getText().toString();
                 String confirmPassword=editTextConfirmPassword.getText().toString();
 
-// check if any of the fields are vaccant
+                // Se verifica que ningun campo esté vacío
                 if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Complete todos los campos", Toast.LENGTH_LONG).show();
                     return;
                 }
-// check if both password matches
+                //Se chequea que las contraseñas coinsidan
                 if(!password.equals(confirmPassword))
                 {
                     Toast.makeText(getApplicationContext(), "Las constraseñas no coinciden", Toast.LENGTH_LONG).show();
@@ -55,7 +55,7 @@ public class singUp extends Activity
                 }
                 else
                 {
-// Save the Data in Database
+                    // Se guardan los datos en la base de datos
                     loginDataBaseAdapter.insertEntry(userName, password);
                     Toast.makeText(getApplicationContext(), "Cuenta creada correctamente", Toast.LENGTH_LONG).show();
                     Intent intentSignIn=new Intent(getApplicationContext(),login.class);

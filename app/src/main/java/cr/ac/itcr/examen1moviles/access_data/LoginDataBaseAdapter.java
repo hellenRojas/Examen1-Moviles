@@ -11,15 +11,15 @@ public class LoginDataBaseAdapter
     static final String DATABASE_NAME = "login.db";
     static final int DATABASE_VERSION = 1;
     public static final int NAME_COLUMN = 1;
-    // TODO: Create public field for each column in your table.
-// SQL Statement to create a new database.
+
+    //Sentencia SQL para crear una nueva base de datos.
     static final String DATABASE_CREATE = "create table "+"LOGIN"+
             "( " +"ID"+" integer primary key autoincrement,"+ "USERNAME text,PASSWORD text); ";
-    // Variable to hold the database instance
+    //Variable que  contiene la instancia de base de datos
     public SQLiteDatabase db;
-    // Context of the application using the database.
+    //Contexto de la aplicación que utiliza la base de datos .
     private final Context context;
-    // Database open/upgrade helper
+    //Base de datos abrir / actualizar
     private DataBaseHelper dbHelper;
     public LoginDataBaseAdapter(Context _context)
     {
@@ -44,26 +44,18 @@ public class LoginDataBaseAdapter
     public void insertEntry(String userName,String password)
     {
         ContentValues newValues = new ContentValues();
-// Assign values for each row.
+       // Asignar valores para cada fila .
         newValues.put("USERNAME", userName);
-        newValues.put("PASSWORD",password);
+        newValues.put("PASSWORD", password);
 
-// Insert the row into your table
+        // Introducir la fila en la tabla
         db.insert("LOGIN", null, newValues);
-///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
     }
-    public int deleteEntry(String UserName)
-    {
-//String id=String.valueOf(ID);
-        String where="USERNAME=?";
-        int numberOFEntriesDeleted= db.delete("LOGIN", where, new String[]{UserName}) ;
-// Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
-        return numberOFEntriesDeleted;
-    }
+
     public String getSinlgeEntry(String userName)
     {
         Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
-        if(cursor.getCount()<1) // UserName Not Exist
+        if(cursor.getCount()<1)
         {
             cursor.close();
             return "NOT EXIST";
@@ -73,15 +65,5 @@ public class LoginDataBaseAdapter
         cursor.close();
         return password;
     }
-    public void updateEntry(String userName,String password)
-    {
-// Define the updated row content.
-        ContentValues updatedValues = new ContentValues();
-// Assign values for each row.
-        updatedValues.put("USERNAME", userName);
-        updatedValues.put("PASSWORD",password);
 
-        String where="USERNAME = ?";
-        db.update("LOGIN",updatedValues, where, new String[]{userName});
-    }
 }

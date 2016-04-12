@@ -18,7 +18,13 @@ public class FlorRepository implements IRepository<Flor> {
     public FlorRepository(Context context){
         connexion = new Connexion(context);
     }
+    // Función para agregar elementos
 
+    /**
+     *
+     * @param flor
+     * @return
+     */
     @Override
     public boolean Save(Flor flor) {
         try{
@@ -38,7 +44,13 @@ public class FlorRepository implements IRepository<Flor> {
         }
         return true;
     }
-
+    // Función para actualizar elementos
+    /**
+     *
+     * @param flor(Resibe un objeto flor como paramentro y lo actualiza en la base de datos)
+     * @return
+     *
+     */
     @Override
     public boolean Update(Flor flor) {
         try{
@@ -57,14 +69,19 @@ public class FlorRepository implements IRepository<Flor> {
         }
         return true;
     }
-
+    // Función para eliminar elementos
+    /**
+     *
+     * @param flor(Resibe un objeto flor como paramentro y lo elimina en la base de datos)
+     * @return
+     */
     @Override
-    public boolean Delete(Flor place) {
+    public boolean Delete(Flor flor) {
         try{
             SQLiteDatabase db = connexion.getWritableDatabase();
             if(db != null){
 
-                String[] args = new String[]{String.valueOf(place.getName())};
+                String[] args = new String[]{String.valueOf(flor.getName())};
                 db.delete("flor","name=?",args);
                 connexion.close();
                 return false;
@@ -75,7 +92,11 @@ public class FlorRepository implements IRepository<Flor> {
         }
         return true;
     }
-
+    //Funcion que ontiene todos los elementos
+    /**
+     *
+     * @return lista de nombres de todos los elementos
+     */
     @Override
     public ArrayList<String> GetAll() {
         ArrayList<String> listFlores = new ArrayList<String>();
@@ -99,7 +120,13 @@ public class FlorRepository implements IRepository<Flor> {
         }
         return listFlores;
     }
+    //Función que obtiene un string con el nombre de un objeto y retorna el objeto
 
+    /**
+     *
+     * @param flor
+     * @return Flor flotTemp
+     */
     @Override
     public Flor GetBy(String flor) {
         Flor florTemp = new Flor();

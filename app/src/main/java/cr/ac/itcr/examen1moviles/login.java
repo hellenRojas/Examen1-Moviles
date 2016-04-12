@@ -22,7 +22,7 @@ public class login extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-// create a instance of SQLite Database
+    // Se crea la instancia de la base de datos SQLite
         loginDataBaseAdapter=new LoginDataBaseAdapter(this);
         loginDataBaseAdapter=loginDataBaseAdapter.open();
 
@@ -41,18 +41,18 @@ public class login extends Activity
 
         Button btnSignIn=(Button)findViewById(R.id.btnLogin);
 
-// Set On ClickListener
+        // Se le da funcionalidad el boton de logeo
         btnSignIn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-// get The User name and Password
+                //Se obtiene el nombre de usuario y la contraseña
                 String userName=editTextUserName.getText().toString();
                 String password=editTextPassword.getText().toString();
 
-// fetch the Password form database for respective user name
+                // Se recupera la constraseña de la base de datos (de su respectivo usuario)
                 String storedPassword=loginDataBaseAdapter.getSinlgeEntry(userName);
 
-// check if the Stored password matches with Password entered by user
+                // Se coamprueba que la contraseña conincida con el usuario
                 if(password.equals(storedPassword))
                 {
                     Toast.makeText(login.this, "Se logeo correctamente", Toast.LENGTH_LONG).show();
@@ -69,11 +69,7 @@ public class login extends Activity
 
 
     }
-    // Methos to handleClick Event of Sign In Button
-    public void signIn(View V)
-    {
 
-    }
 
     @Override
     protected void onDestroy() {
