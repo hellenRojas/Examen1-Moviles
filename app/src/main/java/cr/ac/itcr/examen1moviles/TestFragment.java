@@ -116,7 +116,7 @@ public class TestFragment extends Fragment {
                 dialogo1.setMessage("Nombre: " + nombre + "\n\n Nombre científico: " +nombreC
                         + "\n\n Color: " +color);
                 dialogo1.setCancelable(false);
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                dialogo1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
                         //aceptar();
                     }

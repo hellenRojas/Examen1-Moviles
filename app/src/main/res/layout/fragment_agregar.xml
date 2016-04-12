@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarFragment">
+    tools:context=".AgregarFragment"
+    style="@style/Base.Animation.AppCompat.Dialog">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -25,10 +26,12 @@
                 android:text="Agregar tipo de Flor"
                 android:id="@+id/textView"
                 android:textSize="30dp"
-                android:textColor="#ab71c5"
+                android:textColor="@color/green"
                 android:textStyle="bold|italic"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:textCursorDrawable="@null"
+                android:textColorHighlight="#ffffff" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,7 +46,14 @@
                 android:id="@+id/etNombre"
                 android:layout_weight="1"
                 android:hint="Nombre"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textColorHint="@color/gray"
+                android:textColorLink="#ffffff"
+                android:textColor="#ffffff"
+                android:textColorHighlight="#ffffff"
+                android:textIsSelectable="false"
+                android:textCursorDrawable="@null"
+                android:theme="@style/AlertDialog.AppCompat.Light" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,7 +68,13 @@
                 android:layout_weight="1"
                 android:hint="Nombre científico"
                 android:textSize="20dp"
-                android:textIsSelectable="false" />
+                android:textColorHint="@color/gray"
+                android:textColorLink="#ffffff"
+                android:textColor="#ffffff"
+                android:textColorHighlight="#ffffff"
+                android:textIsSelectable="false"
+                android:textCursorDrawable="@null"
+                android:theme="@style/AlertDialog.AppCompat.Light" />
         </LinearLayout>
 
         <LinearLayout
@@ -72,7 +88,14 @@
                 android:id="@+id/etColor"
                 android:layout_weight="1"
                 android:hint="Color"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textColorHint="@color/gray"
+                android:textColorLink="#ffffff"
+                android:textColor="#ffffff"
+                android:textColorHighlight="#ffffff"
+                android:textIsSelectable="false"
+                android:textCursorDrawable="@null"
+                android:theme="@style/AlertDialog.AppCompat.Light" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,16 +105,19 @@
             android:weightSum="1">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="74dp"
+                android:layout_width="326dp"
+                android:layout_height="63dp"
                 android:text="Agregar elemento"
                 android:id="@+id/btnAgregarFlor"
                 android:gravity="center"
-                android:layout_weight="0.95"
                 android:textSize="20dp"
-                android:textStyle="italic"
-                android:background="@color/green" />
+                android:background="@color/green"
+                android:layout_marginLeft="15dp"
+                android:textCursorDrawable="@null"
+                android:textAppearance="@style/AlertDialog.AppCompat.Light"
+                android:textColor="#ffffff" />
         </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>

@@ -7,7 +7,8 @@
         android:icon="@drawable/flor"
         android:label="@string/nombre_app"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+         >
         <activity
             android:name=".login"
             android:label="@string/nombre_app"
@@ -31,7 +32,10 @@
             android:name=".singUp"
             android:label="@string/nombre_app"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EditElimActivity"></activity>
+
+        <activity android:name=".EditElimActivity"
+            android:label="@string/nombre_app" />
+        />
     </application>
 
 </manifest>
